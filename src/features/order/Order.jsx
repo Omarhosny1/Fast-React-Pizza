@@ -81,7 +81,7 @@ function Order() {
         ))}
       </ul>
 
-      <div className="flex justify-between space-y-2 bg-stone-200 px-6 py-5">
+      <div className="flex justify-between gap-3 space-y-2 bg-stone-200 px-6 py-5">
         <div>
           <p className="text-sm font-medium text-stone-600">
             Price pizza: {formatCurrency(orderPrice)}
