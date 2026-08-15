@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { username } from "../cart/cartSlice";
+import { username } from "./userSlice";
 
 function Username() {
   const userName = useSelector(username);

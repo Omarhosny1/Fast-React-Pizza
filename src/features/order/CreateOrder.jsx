@@ -7,7 +7,12 @@ import EmptyCart from "../cart/EmptyCart";
 import { cartItems, clearCart, totalPrice } from "../cart/cartSlice";
 import store from "../../store";
 import { formatCurrency } from "../../utilities/helpers";
-import { fetchAddress } from "../user/userSlice";
+import {
+  fetchAddress,
+  userInformation,
+  setAddress,
+  setPhone,
+} from "../user/userSlice";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -28,7 +33,8 @@ function CreateOrder() {
     address,
     status: addressStatus,
     error: addressError,
-  } = useSelector((state) => state.user);
+    phone,
+  } = useSelector(userInformation);
 
   const isLoadingAddress = addressStatus === "loading";
 
@@ -62,7 +68,14 @@ function CreateOrder() {
         <div className="mb-5 flex flex-col gap-2 sm:flex-row sm:items-center">
           <label className="sm:basis-40">Phone number</label>
           <div className="grow">
-            <input className="input w-full" type="tel" name="phone" required />
+            <input
+              className="input w-full"
+              type="tel"
+              name="phone"
+              defaultValue={phone}
+              onChange={(e) => dispatch(setPhone(e.target.value))}
+              required
+            />
             {formErrors?.phone && (
               <p className="mt-2 rounded-md bg-red-100 p-2 text-xs text-red-700">
                 {formErrors.phone}
@@ -80,6 +93,7 @@ function CreateOrder() {
               name="address"
               disabled={isLoadingAddress}
               defaultValue={address}
+              onChange={(e) => dispatch(setAddress(e.target.value))}
               required
             />
             {addressStatus === "error" && (

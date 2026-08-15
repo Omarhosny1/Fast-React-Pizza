@@ -2,8 +2,9 @@ import LinkButton from "../../ui/LinkButton";
 import Button from "../../ui/Button";
 import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
-import { cartItems, clearCart, username } from "./cartSlice";
+import { cartItems, clearCart } from "./cartSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { username } from "../user/userSlice";
 
 function Cart() {
   const cart = useSelector(cartItems);

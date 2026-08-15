@@ -31,6 +31,7 @@ const initialState = {
   address: "",
   position: {},
   error: "",
+  phone: "",
 };
 const userSlice = createSlice({
   name: "user",
@@ -38,6 +39,12 @@ const userSlice = createSlice({
   reducers: {
     updateName(state, action) {
       state.userName = action.payload;
+    },
+    setAddress(state, action) {
+      state.address = action.payload;
+    },
+    setPhone(state, action) {
+      state.phone = action.payload;
     },
   },
   extraReducers: (builder) =>
@@ -58,6 +65,9 @@ const userSlice = createSlice({
       }),
 });
 
-export const { updateName } = userSlice.actions;
+export const { updateName, setAddress, setPhone } = userSlice.actions;
 
 export default userSlice.reducer;
+
+export const userInformation = (state) => state.user;
+export const username = (state) => state.user.userName;

@@ -11,6 +11,8 @@ import {
 } from "../../utilities/helpers";
 import { useEffect } from "react";
 import UpdateOrder from "./UpdateOrder";
+import { useSelector } from "react-redux";
+import { userInformation } from "../user/userSlice";
 
 function Order() {
   const order = useLoaderData();
@@ -32,6 +34,9 @@ function Order() {
     estimatedDelivery,
     cart,
   } = order;
+
+  const { userName, address, phone } = useSelector(userInformation);
+  console.log(address);
 
   const deliveryIn = calcMinutesLeft(estimatedDelivery);
   return (
@@ -76,18 +81,34 @@ function Order() {
         ))}
       </ul>
 
-      <div className="space-y-2 bg-stone-200 px-6 py-5">
-        <p className="text-sm font-medium text-stone-600">
-          Price pizza: {formatCurrency(orderPrice)}
-        </p>
-        {priority && (
+      <div className="flex justify-between space-y-2 bg-stone-200 px-6 py-5">
+        <div>
           <p className="text-sm font-medium text-stone-600">
-            Price priority: {formatCurrency(priorityPrice)}
+            Price pizza: {formatCurrency(orderPrice)}
           </p>
-        )}
-        <p className="font-bold">
-          To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
-        </p>
+          {priority && (
+            <p className="text-sm font-medium text-stone-600">
+              Price priority: {formatCurrency(priorityPrice)}
+            </p>
+          )}
+          <p className="font-bold">
+            To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
+          </p>
+        </div>
+        <div>
+          <p className="sm:basis-40">
+            <span className="pr-2 font-bold">👤</span>
+            {userName}
+          </p>
+          <p className="sm:basis-40">
+            <span className="pr-2 font-bold">🏠</span>
+            {address}
+          </p>
+          <p className="sm:basis-40">
+            <span className="pr-2 font-bold">📞</span>
+            {phone}
+          </p>
+        </div>
       </div>
       {!priority && <UpdateOrder />}
     </div>

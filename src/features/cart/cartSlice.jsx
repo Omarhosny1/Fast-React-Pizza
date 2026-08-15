@@ -43,7 +43,6 @@ export const {
 export default cartSlice.reducer;
 
 export const cartItems = (state) => state.cart.cart;
-export const username = (state) => state.user.userName;
 export const totalPizzas = (state) =>
   state.cart.cart.reduce((acc, cur) => acc + cur.quantity, 0);
 export const totalPrice = (state) =>
