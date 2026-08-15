@@ -97,15 +97,15 @@ function Order() {
         </div>
         <div>
           <p className="sm:basis-40">
-            <span className="pr-2 font-bold">👤</span>
+            <span className="pr-2">👤</span>
             {userName}
           </p>
           <p className="sm:basis-40">
-            <span className="pr-2 font-bold">🏠</span>
+            <span className="pr-2">🏠</span>
             {address}
           </p>
           <p className="sm:basis-40">
-            <span className="pr-2 font-bold">📞</span>
+            <span className="pr-2">📞</span>
             {phone}
           </p>
         </div>
